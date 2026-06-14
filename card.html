@@ -508,7 +508,34 @@
             document.querySelectorAll('.style-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            document.getElementById(`btn-${styleName}`).classList.add('active');
+            const activeBtn = document.getElementById(`btn-${styleName}`);
+            if (activeBtn) activeBtn.classList.add('active');
+        }
+
+        // Handle URL parameters for screenshotting
+        const urlParams = new URLSearchParams(window.location.search);
+        const styleParam = urlParams.get('style');
+        const sideParam = urlParams.get('side');
+        const hideUiParam = urlParams.get('hide_ui');
+
+        if (styleParam) {
+            changeStyle(styleParam);
+        }
+        if (sideParam === 'back') {
+            document.getElementById('business-card').classList.add('flipped');
+        }
+        if (hideUiParam === 'true') {
+            const selector = document.querySelector('.style-selector-container');
+            const actions = document.querySelector('.header-actions');
+            if (selector) selector.style.display = 'none';
+            if (actions) actions.style.display = 'none';
+            document.body.style.background = 'transparent';
+            document.body.style.padding = '0';
+            document.body.style.margin = '0';
+            document.body.style.height = '100vh';
+            document.body.style.display = 'flex';
+            document.body.style.alignItems = 'center';
+            document.body.style.justifyContent = 'center';
         }
     </script>
 </body>
