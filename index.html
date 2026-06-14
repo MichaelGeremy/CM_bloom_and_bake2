@@ -4,13 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tanzanite Lux Events | Christine</title>
+    <meta name="description" content="Tanzanite Lux Events & Bloom and Bake Atelier by Christine. Curated luxury events, bespoke styling, custom luxury cakes, and bouquets.">
+    <title>Tanzanite Lux | Bloom & Bake | Christine</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
@@ -18,88 +14,319 @@
     <div class="background-overlay"></div>
 
     <div class="container">
-        <!-- Official Logo Header -->
+        <!-- Main Logo & Header -->
         <header class="main-header">
             <div class="logo-container">
-                <img src="logo.jpg" alt="Tanzanite Lux Events Logo" class="brand-logo">
+                <img src="logo.jpg" alt="Tanzanite Lux Events & Bloom & Bake Logo" class="brand-logo">
             </div>
             <h1>Christine</h1>
             <p class="main-subtitle">Curated Luxury & Sweet Moments</p>
+
+            <div class="vcard-download-container">
+                <a href="vcard.vcf" class="btn-vcard" download title="Save Christine's contact to your phone">
+                    <i class="fas fa-user-plus"></i> Save Contact
+                </a>
+                <a href="card.html" class="btn-vcard" title="View interactive digital business card">
+                    <i class="fas fa-address-card"></i> Digital Card
+                </a>
+            </div>
         </header>
 
-        <!-- Business Content -->
-        <div class="content-grid">
+        <!-- Brand Selector Tabs -->
+        <div class="brand-selector" id="brand-selector">
+            <button class="tab-btn active" id="btn-tanzanite" onclick="switchTab('tanzanite')">Tanzanite Events</button>
+            <button class="tab-btn" id="btn-bloom" onclick="switchTab('bloom')">Bloom & Bake</button>
+        </div>
+
+        <!-- Brand Panels -->
+        <div class="brand-panels">
+
             <!-- Tanzanite Lux Events Section -->
-            <section class="business-card glass">
+            <section class="brand-panel active glass-card" id="panel-tanzanite">
                 <h2 class="gold-text">Tanzanite Lux Events</h2>
                 <div class="divider"></div>
                 <p class="tagline italic">"Curated Luxury Experiences, Bespoke Styling, Memories"</p>
 
-                <ul class="services-list modern-list">
-                    <li><i class="fas fa-church"></i> Wedding</li>
-                    <li><i class="fas fa-couch"></i> Room Decor</li>
-                    <li><i class="fas fa-heart"></i> Proposals</li>
-                    <li><i class="fas fa-birthday-cake"></i> Birthday Decor</li>
-                    <li><i class="fas fa-building"></i> Corporate Decor</li>
-                    <li><i class="fas fa-basket-shopping"></i> Picnics</li>
-                    <li><i class="fas fa-users"></i> Traditional Events</li>
-                </ul>
-
-                <div class="social-wrapper">
-                    <p class="directive">Click to follow us</p>
-                    <div class="social-links">
-                        <a href="https://instagram.com/tanzanite_luxe_events" target="_blank" class="social-link"
-                            title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://tiktok.com/@tanzanite.luxe.events" target="_blank" class="social-link"
-                            title="TikTok"><i class="fab fa-tiktok"></i></a>
-                        <a href="https://wa.me/254729338691" class="social-link" title="WhatsApp"><i
-                                class="fab fa-whatsapp"></i></a>
+                <!-- Portfolio Gallery (Static Event Showcase) -->
+                <div class="portfolio-gallery">
+                    <div class="carousel-container">
+                        <div class="carousel-track">
+                            <div class="carousel-slide">
+                                <img src="event_wedding_decor.png" alt="Luxury Wedding Decor Setup">
+                                <div class="slide-caption">Luxury Wedding & Event Table Styling</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="qr-cta">
-                    <div class="qr-frame">
-                        <img src="whatsapp_qr.png" alt="WhatsApp QR Code" class="whatsapp-qr">
+                <ul class="services-list">
+                    <li><i class="fas fa-church"></i> Wedding Planning & Decor</li>
+                    <li><i class="fas fa-couch"></i> Room Decoration</li>
+                    <li><i class="fas fa-heart"></i> Romantic Proposals</li>
+                    <li><i class="fas fa-birthday-cake"></i> Birthday Celebrations</li>
+                    <li><i class="fas fa-building"></i> Corporate Event Decor</li>
+                    <li><i class="fas fa-basket-shopping"></i> Luxury Outdoor Picnics</li>
+                    <li><i class="fas fa-users"></i> Traditional Events & Gatherings</li>
+                </ul>
+
+                <div class="social-wrapper">
+                    <p class="directive">Follow our work</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com/tanzanite_luxe_events" target="_blank" class="social-link" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com/@tanzanite.luxe.events" target="_blank" class="social-link" title="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://wa.me/254729338691" class="social-link" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
-                    <a href="https://wa.me/254729338691" class="btn btn-gold">
-                        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-                    </a>
+                    <div class="handle-display">@tanzanite_luxe_events</div>
+                </div>
+
+                <!-- Interactive Inquiry Builder -->
+                <div class="inquiry-widget">
+                    <h3 class="inquiry-title"><i class="fas fa-calendar-check"></i> Book an Event Setup</h3>
+                    <div class="form-group">
+                        <label class="form-label" for="tanzanite-service">Select Service</label>
+                        <select class="form-select" id="tanzanite-service">
+                            <option value="Wedding Decor">Wedding Decor</option>
+                            <option value="Room Decoration">Room Decoration</option>
+                            <option value="Romantic Proposal">Romantic Proposal</option>
+                            <option value="Birthday Decor">Birthday Decor</option>
+                            <option value="Corporate Decor">Corporate Decor</option>
+                            <option value="Luxury Picnic">Luxury Picnic</option>
+                            <option value="Traditional Event">Traditional Event</option>
+                            <option value="Custom Bespoke Event">Other Custom Request</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="tanzanite-name">Your Name</label>
+                        <input type="text" class="form-input" id="tanzanite-name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="tanzanite-date">Event Date</label>
+                        <input type="date" class="form-input" id="tanzanite-date">
+                    </div>
+                    <button class="btn-whatsapp" onclick="sendTanzaniteInquiry()">
+                        <i class="fab fa-whatsapp"></i> Customize & Inquiry
+                    </button>
+                </div>
+
+                <!-- QR Code CTA -->
+                <div class="qr-expandable">
+                    <button class="qr-toggle-btn" onclick="toggleQR('qr-tanzanite')">
+                        <i class="fas fa-qrcode"></i> Toggle Scan QR Code
+                    </button>
+                    <div class="qr-panel" id="qr-tanzanite">
+                        <div class="qr-frame">
+                            <img src="whatsapp_qr.png" alt="WhatsApp QR Code" class="whatsapp-qr">
+                        </div>
+                    </div>
                 </div>
             </section>
 
             <!-- Bloom & Bake Section -->
-            <section class="business-card glass">
+            <section class="brand-panel glass-card" id="panel-bloom">
                 <h2 class="gold-text">Bloom & Bake Atelier</h2>
                 <div class="divider"></div>
-                <p class="tagline">"Where every petal pops and Every bite melts 😋😋🤤💐"</p>
+                <p class="tagline italic">"Where every petal pops and Every bite melts 😋😋🤤💐"</p>
+
+                <!-- Portfolio Gallery (Carousel Event Showcase) -->
+                <div class="portfolio-gallery">
+                    <div class="carousel-container">
+                        <div class="carousel-track" id="bloom-carousel-track">
+                            <div class="carousel-slide">
+                                <img src="luxury_wedding_cake.png" alt="Bespoke Luxury Wedding Cake">
+                                <div class="slide-caption">Luxury Handcrafted Wedding Cakes</div>
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="flower_money_bouquet.png" alt="Flower & Money Bouquet">
+                                <div class="slide-caption">Exquisite Flower & Money Bouquets</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-dots">
+                        <button class="carousel-dot active" onclick="jumpToSlide(0)"></button>
+                        <button class="carousel-dot" onclick="jumpToSlide(1)"></button>
+                    </div>
+                </div>
 
                 <ul class="services-list">
                     <li><i class="fas fa-cake-candles"></i> Custom Luxury Cakes</li>
                     <li><i class="fas fa-utensils"></i> Dessert Table Styling</li>
-                    <li><i class="fas fa-martini-glass-citrus"></i> Cocktails & Mocktails</li>
+                    <li><i class="fas fa-martini-glass-citrus"></i> Premium Cocktails & Mocktails</li>
                     <li><i class="fas fa-gift"></i> Flower & Money Bouquets</li>
                 </ul>
 
                 <div class="social-wrapper">
-                    <p class="directive">Click to follow us</p>
+                    <p class="directive">Follow our creations</p>
                     <div class="social-links">
-                        <a href="https://instagram.com/bloom_and_bake_atelier" target="_blank" class="social-link"
-                            title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://tiktok.com/@bloom_bakeatelier" target="_blank" class="social-link"
-                            title="TikTok"><i class="fab fa-tiktok"></i></a>
-                        <a href="https://wa.me/254729338691" class="social-link" title="WhatsApp"><i
-                                class="fab fa-whatsapp"></i></a>
+                        <a href="https://instagram.com/bloom_and_bake_atelier" target="_blank" class="social-link" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com/@bloom_bakeatelier" target="_blank" class="social-link" title="TikTok">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://wa.me/254729338691" class="social-link" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
                     </div>
                     <div class="handle-display">@bloom_and_bake_atelier</div>
+                </div>
+
+                <!-- Interactive Inquiry Builder -->
+                <div class="inquiry-widget">
+                    <h3 class="inquiry-title"><i class="fas fa-cookie-bite"></i> Place an Order</h3>
+                    <div class="form-group">
+                        <label class="form-label" for="bloom-service">Select Product</label>
+                        <select class="form-select" id="bloom-service">
+                            <option value="Custom Luxury Cake">Custom Luxury Cake</option>
+                            <option value="Dessert Table Styling">Dessert Table Styling</option>
+                            <option value="Cocktails & Mocktails Service">Cocktails & Mocktails</option>
+                            <option value="Flower & Money Bouquet">Flower & Money Bouquet</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="bloom-name">Your Name</label>
+                        <input type="text" class="form-input" id="bloom-name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="bloom-details">Order Details (Flavors, Size, Colors)</label>
+                        <input type="text" class="form-input" id="bloom-details" placeholder="e.g. Red velvet, 2kg, gold/white theme">
+                    </div>
+                    <button class="btn-whatsapp" onclick="sendBloomInquiry()">
+                        <i class="fab fa-whatsapp"></i> Customize & Order
+                    </button>
+                </div>
+
+                <!-- QR Code CTA -->
+                <div class="qr-expandable">
+                    <button class="qr-toggle-btn" onclick="toggleQR('qr-bloom')">
+                        <i class="fas fa-qrcode"></i> Toggle Scan QR Code
+                    </button>
+                    <div class="qr-panel" id="qr-bloom">
+                        <div class="qr-frame">
+                            <img src="whatsapp_qr.png" alt="WhatsApp QR Code" class="whatsapp-qr">
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
 
+        <!-- Footer -->
         <footer class="footer">
-            <p>&copy; 2026 Tanzanite Lux Events</p>
-            <p>Designed for Luxury</p>
+            <p>&copy; 2026 Tanzanite Lux Events & Bloom & Bake</p>
+            <p>Designed for Ultimate Luxury</p>
         </footer>
     </div>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Theme and Tab Management
+        function switchTab(brand) {
+            const body = document.body;
+            const btnTanzanite = document.getElementById('btn-tanzanite');
+            const btnBloom = document.getElementById('btn-bloom');
+            const panelTanzanite = document.getElementById('panel-tanzanite');
+            const panelBloom = document.getElementById('panel-bloom');
+
+            if (brand === 'tanzanite') {
+                body.removeAttribute('data-theme');
+                btnTanzanite.classList.add('active');
+                btnBloom.classList.remove('active');
+                panelTanzanite.classList.add('active');
+                panelBloom.classList.remove('active');
+            } else {
+                body.setAttribute('data-theme', 'bloom-and-bake');
+                btnTanzanite.classList.remove('active');
+                btnBloom.classList.add('active');
+                panelTanzanite.classList.remove('active');
+                panelBloom.classList.add('active');
+            }
+        }
+
+        // QR Code toggle view
+        function toggleQR(panelId) {
+            const panel = document.getElementById(panelId);
+            panel.classList.toggle('open');
+        }
+
+        // Bloom & Bake Carousel Controls
+        let currentSlide = 0;
+        const totalSlides = 2;
+        const track = document.getElementById('bloom-carousel-track');
+        const dots = document.querySelectorAll('.carousel-dot');
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function jumpToSlide(slideIndex) {
+            currentSlide = slideIndex;
+            updateCarousel();
+        }
+
+        // Auto slide Bloom Carousel
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }, 5000);
+
+        // WhatsApp Custom Message Builders
+        function sendTanzaniteInquiry() {
+            const service = document.getElementById('tanzanite-service').value;
+            const name = document.getElementById('tanzanite-name').value.trim();
+            const date = document.getElementById('tanzanite-date').value;
+
+            if (!name) {
+                alert('Please enter your name to customize your inquiry.');
+                return;
+            }
+
+            let message = `Hi Christine! I would like to inquire about a *${service}* booking.`;
+            message += `\n\n*Client Name:* ${name}`;
+            if (date) {
+                const formattedDate = new Date(date).toLocaleDateString('en-US', {
+                    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+                });
+                message += `\n*Event Date:* ${formattedDate}`;
+            }
+            message += `\n\nLooking forward to your response!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/254729338691?text=${encodedMessage}`, '_blank');
+        }
+
+        function sendBloomInquiry() {
+            const service = document.getElementById('bloom-service').value;
+            const name = document.getElementById('bloom-name').value.trim();
+            const details = document.getElementById('bloom-details').value.trim();
+
+            if (!name) {
+                alert('Please enter your name to customize your order.');
+                return;
+            }
+
+            let message = `Hi Christine! I would like to place an order/inquiry for a *${service}*.`;
+            message += `\n\n*Client Name:* ${name}`;
+            if (details) {
+                message += `\n*Order Details:* ${details}`;
+            }
+            message += `\n\nLet me know the availability and next steps!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/254729338691?text=${encodedMessage}`, '_blank');
+        }
+    </script>
 </body>
 
 </html>

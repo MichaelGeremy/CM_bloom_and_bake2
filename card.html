@@ -4,143 +4,271 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Business Card - Tanzanite Lux Events</title>
+    <meta name="description" content="Tanzanite Lux Events interactive digital business card. Save contact, scan to chat, and browse services.">
+    <title>Christine | Digital Business Card</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
+            --emerald-deep: #00231e;
             --emerald: #00332c;
             --gold: #d4af37;
             --white: #ffffff;
+            --gold-light: #f7ef8a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
-            padding: 40px;
-            background-color: #f0f0f0;
+            background: radial-gradient(circle at top, #002d27, #001210);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
-            font-family: 'Montserrat', sans-serif;
+            justify-content: center;
+            gap: 25px;
+            font-family: 'Outfit', sans-serif;
+            padding: 20px;
+            color: var(--white);
             -webkit-print-color-adjust: exact;
         }
 
-        .card {
-            width: 192px;
-            /* 2in */
-            height: 336px;
-            /* 3.5in */
-            background: linear-gradient(135deg, var(--emerald) 0%, #004d40 100%);
-            border: 2px solid var(--gold);
-            border-radius: 4px;
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .btn-action {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--gold);
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-action:hover {
+            background: var(--gold);
+            color: var(--emerald-deep);
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.25);
+        }
+
+        /* 3D Card Container styling */
+        .card-container {
+            width: 320px;
+            height: 520px;
+            perspective: 1200px;
+            cursor: pointer;
+        }
+
+        .card-inner {
             position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            color: var(--white);
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+
+        /* Flipping triggers: hover on desktop or .flipped class on touch */
+        .card-container.flipped .card-inner,
+        .card-container:hover .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 30px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 20px;
-            box-sizing: border-box;
-            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, var(--emerald-deep) 0%, var(--emerald) 100%);
+            color: var(--white);
+            justify-content: center;
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-deep) 100%);
+            color: var(--white);
+            transform: rotateY(180deg);
+            justify-content: space-between;
         }
 
         .logo-img {
-            width: 100px;
-            height: 100px;
+            width: 130px;
+            height: 130px;
             border: 2px solid var(--gold);
             border-radius: 50%;
             background: white;
-            object-fit: contain;
-            margin-bottom: 10px;
-            margin-top: 10px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
         }
 
         .brand-name {
             font-family: 'Playfair Display', serif;
-            font-size: 14px;
+            font-size: 1.8rem;
             color: var(--gold);
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin: 0;
+            margin-bottom: 8px;
+            font-weight: 500;
         }
 
         .tagline {
-            font-size: 7px;
+            font-size: 0.85rem;
             font-style: italic;
-            margin-top: 5px;
+            font-family: 'Playfair Display', serif;
             color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+        }
+
+        .flip-hint {
+            font-size: 0.7rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.8;
+            margin-top: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
         }
 
         .qr-section {
-            margin: 20px 0;
+            margin: 15px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
         }
 
         .qr-wrapper {
             background: white;
-            padding: 5px;
-            border-radius: 8px;
-            display: inline-block;
+            padding: 8px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         .qr-image {
-            width: 85px;
-            height: 85px;
+            width: 110px;
+            height: 110px;
             display: block;
         }
 
         .qr-label {
-            font-size: 7px;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             color: var(--gold);
-            margin-top: 8px;
             font-weight: 700;
         }
 
-        .footer {
-            margin-top: auto;
+        .details-section {
             width: 100%;
+            text-align: center;
+            margin-bottom: 15px;
         }
 
         .phone {
-            font-size: 11px;
+            font-size: 1.15rem;
             font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            color: #ffffff;
+            letter-spacing: 0.5px;
         }
 
         .services {
-            font-size: 6.5px;
-            opacity: 0.8;
-            line-height: 1.4;
-            margin-bottom: 10px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.5;
+            margin-bottom: 12px;
         }
 
         .socials {
             display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: var(--gold-light);
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            opacity: 0.9;
+        }
+
+        .social-item i {
+            color: var(--gold);
+            font-size: 0.95rem;
+        }
+
+        /* Backside shortcuts bar */
+        .card-actions {
+            width: 100%;
+            display: flex;
             justify-content: center;
             gap: 10px;
+            margin-top: 10px;
         }
 
-        .social-icon {
-            font-size: 9px;
-            color: var(--gold);
+        .card-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
 
-        .print-btn {
-            background: var(--emerald);
-            color: var(--gold);
-            border: 2px solid var(--gold);
-            padding: 10px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-bottom: 10px;
+        .card-btn:hover {
+            background: var(--gold);
+            color: var(--emerald-deep);
+            border-color: var(--gold);
+            transform: scale(1.1);
         }
 
         @media print {
@@ -149,12 +277,12 @@
                 padding: 0;
             }
 
-            .card {
+            .card-container {
                 box-shadow: none;
                 margin: 0 auto;
             }
 
-            .print-btn {
+            .header-actions, .flip-hint, .card-actions {
                 display: none;
             }
         }
@@ -163,34 +291,67 @@
 
 <body>
 
-    <button class="print-btn" onclick="window.print()">Print Card</button>
+    <div class="header-actions">
+        <a href="index.html" class="btn-action"><i class="fas fa-home"></i> Home</a>
+        <a href="vcard.vcf" class="btn-action" download><i class="fas fa-user-plus"></i> Save</a>
+        <button class="btn-action" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
+    </div>
 
-    <div class="card">
-        <img src="logo.jpg" alt="Logo" class="logo-img">
-        <h2 class="brand-name">Tanzanite Lux</h2>
-        <p class="tagline">"Curated Luxury Experiences"</p>
-
-        <div class="qr-section">
-            <div class="qr-wrapper">
-                <img src="whatsapp_qr.png" alt="WhatsApp QR" class="qr-image">
-            </div>
-            <div class="qr-label">Scan to Chat</div>
-        </div>
-
-        <div class="footer">
-            <div class="phone">📞 0729 338 691</div>
-            <div class="services">
-                Cakes • Events • Cocktails<br>@bloom_and_bake_atelier
-            </div>
-            <div class="socials">
-                <div style="font-size: 8px;">
-                    <i class="fab fa-instagram social-icon"></i> @bloom_and_bake_atelier<br>
-                    <i class="fab fa-tiktok social-icon"></i> @bloom_bakeatelier
+    <!-- 3D Flipping Business Card -->
+    <div class="card-container" id="business-card" onclick="toggleFlip()">
+        <div class="card-inner">
+            
+            <!-- Card Front -->
+            <div class="card-front">
+                <img src="logo.jpg" alt="Tanzanite Lux Logo" class="logo-img">
+                <h2 class="brand-name">Tanzanite Lux</h2>
+                <p class="tagline">Curated Luxury Experiences</p>
+                <div class="flip-hint">
+                    <i class="fas fa-sync-alt"></i> Tap Card to Flip
                 </div>
             </div>
+
+            <!-- Card Back -->
+            <div class="card-back">
+                <div class="qr-section">
+                    <div class="qr-wrapper">
+                        <img src="whatsapp_qr.png" alt="WhatsApp QR" class="qr-image">
+                    </div>
+                    <div class="qr-label">Scan to Chat</div>
+                </div>
+
+                <div class="details-section">
+                    <div class="phone">📞 0729 338 691</div>
+                    <div class="services">
+                        Bespoke Events • Custom Cakes • Cocktails<br>
+                        Traditional Occasions • Bouquets
+                    </div>
+                    <div class="socials">
+                        <div class="social-item">
+                            <i class="fab fa-instagram"></i> @bloom_and_bake_atelier
+                        </div>
+                        <div class="social-item">
+                            <i class="fab fa-tiktok"></i> @bloom_bakeatelier
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-actions">
+                    <a href="tel:+254729338691" class="card-btn" title="Call Christine"><i class="fas fa-phone"></i></a>
+                    <a href="https://wa.me/254729338691" class="card-btn" title="WhatsApp Message"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://instagram.com/tanzanite_luxe_events" target="_blank" class="card-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
         </div>
     </div>
 
+    <script>
+        function toggleFlip() {
+            const card = document.getElementById('business-card');
+            card.classList.toggle('flipped');
+        }
+    </script>
 </body>
 
 </html>
