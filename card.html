@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tanzanite Lux Events interactive digital business card with multiple modern styles.">
-    <title>Christine | Digital Business Card</title>
+    <meta name="description" content="Tanzanite Lux Events interactive landscape digital business card.">
+    <title>Christine | Landscape Business Card</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* CSS Custom Properties for Dynamic Styling */
+        /* CSS Custom Properties for Landscape Themes */
         :root {
             /* Theme 1: Emerald Lux (Default) */
             --body-bg: radial-gradient(circle at top, #002d27, #001210);
@@ -20,13 +20,14 @@
             --card-accent: #d4af37;
             --card-accent-rgb: 212, 175, 55;
             --card-text: #ffffff;
-            --card-text-secondary: rgba(255, 255, 255, 0.8);
+            --card-text-secondary: rgba(255, 255, 255, 0.75);
             --btn-bg: rgba(255, 255, 255, 0.05);
             --btn-border: rgba(212, 175, 55, 0.3);
             --btn-hover-bg: #d4af37;
             --btn-hover-text: #00231e;
             --shadow: rgba(0, 0, 0, 0.5);
             --logo-bg: #ffffff;
+            --divider: rgba(212, 175, 55, 0.25);
         }
 
         [data-style="ivory"] {
@@ -42,8 +43,9 @@
             --btn-border: rgba(197, 160, 89, 0.4);
             --btn-hover-bg: #c5a059;
             --btn-hover-text: #fdfbf7;
-            --shadow: rgba(44, 37, 35, 0.15);
+            --shadow: rgba(44, 37, 35, 0.12);
             --logo-bg: #2c2523;
+            --divider: rgba(197, 160, 89, 0.3);
         }
 
         [data-style="obsidian"] {
@@ -54,13 +56,14 @@
             --card-accent: #f7ef8a;
             --card-accent-rgb: 247, 239, 138;
             --card-text: #ffffff;
-            --card-text-secondary: rgba(255, 255, 255, 0.7);
+            --card-text-secondary: rgba(255, 255, 255, 0.65);
             --btn-bg: rgba(255, 255, 255, 0.03);
             --btn-border: rgba(247, 239, 138, 0.3);
             --btn-hover-bg: #f7ef8a;
             --btn-hover-text: #121212;
-            --shadow: rgba(0, 0, 0, 0.8);
+            --shadow: rgba(0, 0, 0, 0.7);
             --logo-bg: #ffffff;
+            --divider: rgba(247, 239, 138, 0.2);
         }
 
         * {
@@ -76,7 +79,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
             font-family: 'Outfit', sans-serif;
             padding: 20px;
             color: var(--card-text);
@@ -104,7 +107,7 @@
 
         .style-switcher {
             display: flex;
-            background: rgba(0, 0, 0, 0.15);
+            background: rgba(0, 0, 0, 0.12);
             border: 1px solid var(--btn-border);
             padding: 5px;
             border-radius: 40px;
@@ -141,7 +144,7 @@
             display: inline-block;
         }
 
-        /* Navigation & Actions */
+        /* Actions Bar */
         .header-actions {
             display: flex;
             gap: 12px;
@@ -174,111 +177,136 @@
             box-shadow: 0 4px 12px rgba(var(--card-accent-rgb), 0.2);
         }
 
-        /* 3D Card Container styling */
+        /* Landscape Card Layout styling */
+        .card-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            perspective: 1000px;
+        }
+
         .card-container {
-            width: 320px;
-            height: 520px;
-            perspective: 1200px;
-            cursor: pointer;
-        }
-
-        .card-inner {
+            width: 540px;
+            height: 310px;
+            border: 2.5px solid var(--card-border);
+            border-radius: 18px;
+            background: var(--card-bg);
+            box-shadow: 0 15px 35px var(--shadow);
+            padding: 24px;
+            display: flex;
             position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform-style: preserve-3d;
+            overflow: hidden;
+            transition: background 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease, transform 0.4s ease;
         }
 
-        /* Flipping triggers: hover on desktop or .flipped class on touch */
-        .card-container.flipped .card-inner,
-        .card-container:hover .card-inner {
-            transform: rotateY(180deg);
+        .card-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 45px var(--shadow), 0 0 25px rgba(var(--card-accent-rgb), 0.08);
         }
 
-        .card-front, .card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            border: 2px solid var(--card-border);
-            border-radius: 20px;
-            padding: 30px 20px;
+        /* Left Side Details styling */
+        .card-left {
+            width: 62%;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            box-shadow: 0 15px 35px var(--shadow);
-            background: var(--card-bg);
-            transition: background 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
-        }
-
-        .card-front {
-            justify-content: center;
-        }
-
-        .card-back {
-            transform: rotateY(180deg);
             justify-content: space-between;
+            padding-right: 15px;
+            text-align: left;
+        }
+
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
 
         .logo-img {
-            width: 125px;
-            height: 125px;
-            border: 2px solid var(--card-border);
+            width: 54px;
+            height: 54px;
+            border: 1.5px solid var(--card-border);
             border-radius: 50%;
             background: var(--logo-bg);
             object-fit: cover;
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(var(--card-accent-rgb), 0.15);
-            transition: border-color 0.6s ease, box-shadow 0.6s ease;
+            box-shadow: 0 0 10px rgba(var(--card-accent-rgb), 0.1);
+            transition: border-color 0.6s ease;
+        }
+
+        .brand-title-group {
+            display: flex;
+            flex-direction: column;
         }
 
         .brand-name {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.25rem;
             color: var(--card-accent);
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 6px;
-            font-weight: 500;
+            letter-spacing: 1.5px;
+            font-weight: 700;
             transition: color 0.6s ease;
         }
 
-        .tagline {
-            font-size: 0.85rem;
-            font-style: italic;
-            font-family: 'Playfair Display', serif;
+        .brand-subtitle {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
             color: var(--card-text-secondary);
-            margin-bottom: 25px;
         }
 
-        .flip-hint {
+        .director-info {
+            margin: 10px 0;
+        }
+
+        .director-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--card-text);
+            letter-spacing: 0.5px;
+        }
+
+        .director-title {
             font-size: 0.7rem;
-            color: var(--card-accent);
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
+            color: var(--card-accent);
+            font-weight: 600;
+            transition: color 0.6s ease;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.75rem;
+        }
+
+        .contact-item {
             display: flex;
             align-items: center;
             gap: 8px;
-            opacity: 0.8;
-            margin-top: 15px;
-            animation: pulse 2s infinite;
+            color: var(--card-text-secondary);
         }
 
-        @keyframes pulse {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { opacity: 0.5; }
+        .contact-item i {
+            color: var(--card-accent);
+            width: 14px;
+            text-align: center;
+            transition: color 0.6s ease;
         }
 
-        .qr-section {
-            margin: 15px 0 5px;
+        /* Right Side QR styling */
+        .card-right {
+            width: 38%;
+            border-left: 1px solid var(--divider);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            padding-left: 15px;
+            gap: 12px;
+            transition: border-color 0.6s ease;
         }
 
         .qr-wrapper {
@@ -286,6 +314,12 @@
             padding: 8px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .qr-wrapper:hover {
+            transform: scale(1.05);
         }
 
         .qr-image {
@@ -295,93 +329,34 @@
         }
 
         .qr-label {
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: var(--card-accent);
             font-weight: 700;
+            text-align: center;
+            line-height: 1.3;
             transition: color 0.6s ease;
         }
 
-        .details-section {
-            width: 100%;
-            text-align: center;
-            margin-bottom: 15px;
-        }
-
-        .director-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--card-accent);
-            margin-bottom: 2px;
-            letter-spacing: 0.5px;
-        }
-
-        .director-title {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: var(--card-text-secondary);
-            margin-bottom: 12px;
-        }
-
-        .phone {
-            font-size: 1.1rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--card-text);
-            letter-spacing: 0.5px;
-        }
-
-        .services {
-            font-size: 0.75rem;
-            color: var(--card-text-secondary);
-            line-height: 1.4;
-            margin-bottom: 12px;
-        }
-
-        .socials {
+        .card-actions-row {
             display: flex;
-            flex-direction: column;
-            gap: 6px;
-            font-size: 0.75rem;
-            color: var(--card-accent);
-        }
-
-        .social-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            opacity: 0.9;
-        }
-
-        .social-item i {
-            color: var(--card-accent);
-            font-size: 0.85rem;
-        }
-
-        /* Backside actions bar */
-        .card-actions {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin-top: 5px;
+            gap: 8px;
+            margin-top: 10px;
         }
 
         .card-btn {
             background: var(--btn-bg);
             border: 1px solid var(--btn-border);
             color: var(--card-text);
-            width: 36px;
-            height: 36px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
+            font-size: 0.75rem;
             transition: all 0.3s ease;
         }
 
@@ -392,19 +367,37 @@
             transform: scale(1.1);
         }
 
+        /* Responsive scale down for landscape proportions */
+        @media (max-width: 580px) {
+            .card-container {
+                transform: scale(0.65);
+                transform-origin: center center;
+            }
+            body {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .card-container {
+                transform: scale(0.55);
+            }
+        }
+
         @media print {
             body {
                 background: none;
                 padding: 0;
             }
 
-            .style-selector-container, .header-actions, .flip-hint, .card-actions {
+            .style-selector-container, .header-actions, .card-actions-row {
                 display: none;
             }
 
             .card-container {
                 box-shadow: none;
                 margin: 0 auto;
+                transform: none;
             }
         }
     </style>
@@ -414,7 +407,7 @@
 
     <!-- Styles Switcher Panel -->
     <div class="style-selector-container">
-        <span class="selector-label">Choose Business Card Style</span>
+        <span class="selector-label">Choose Landscape Card Style</span>
         <div class="style-switcher">
             <button class="style-btn active" id="btn-emerald" onclick="changeStyle('emerald')">
                 <span class="color-dot" style="background: #00332c; border: 1px solid #d4af37;"></span> Emerald
@@ -428,58 +421,57 @@
         </div>
     </div>
 
-    <!-- Navigation & Direct actions -->
+    <!-- Actions Bar -->
     <div class="header-actions">
         <a href="index.html" class="btn-action"><i class="fas fa-home"></i> Home</a>
         <a href="vcard.vcf" class="btn-action" download><i class="fas fa-user-plus"></i> Save Contact</a>
         <button class="btn-action" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
     </div>
 
-    <!-- 3D Flipping Business Card -->
-    <div class="card-container" id="business-card" onclick="toggleFlip(event)">
-        <div class="card-inner">
+    <!-- Landscape Business Card -->
+    <div class="card-wrapper">
+        <div class="card-container" id="business-card">
             
-            <!-- Card Front -->
-            <div class="card-front">
-                <img src="logo.jpg" alt="Tanzanite Lux Logo" class="logo-img">
-                <h2 class="brand-name">Tanzanite Lux</h2>
-                <p class="tagline">Curated Luxury Experiences</p>
-                <div class="flip-hint">
-                    <i class="fas fa-sync-alt"></i> Tap Card to Flip
+            <!-- Left Panel (Brand and Contact) -->
+            <div class="card-left">
+                <div class="brand-header">
+                    <img src="logo.jpg" alt="Tanzanite Lux Logo" class="logo-img">
+                    <div class="brand-title-group">
+                        <span class="brand-name">Tanzanite Lux</span>
+                        <span class="brand-subtitle">Events & Cakes Atelier</span>
+                    </div>
+                </div>
+
+                <div class="director-info">
+                    <h3 class="director-name">Christine</h3>
+                    <div class="director-title">Founder & Creative Director</div>
+                </div>
+
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>0729 338 691</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-instagram"></i>
+                        <span>@bloom_and_bake_atelier</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-tiktok"></i>
+                        <span>@bloom_bakeatelier</span>
+                    </div>
                 </div>
             </div>
 
-            <!-- Card Back -->
-            <div class="card-back">
-                <!-- QR Code scan to chat -->
-                <div class="qr-section">
-                    <div class="qr-wrapper">
-                        <img src="whatsapp_qr.png" alt="WhatsApp QR" class="qr-image">
-                    </div>
-                    <div class="qr-label">Scan to Chat</div>
+            <!-- Right Panel (QR Code and Actions) -->
+            <div class="card-right">
+                <div class="qr-wrapper">
+                    <!-- Dynamic QR Code pointing to index.html -->
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fwa.me%2F254729338691" alt="Dynamic Website QR" class="qr-image" id="website-qr">
                 </div>
+                <div class="qr-label">Scan to Visit<br>Website</div>
 
-                <!-- Director Contact details -->
-                <div class="details-section">
-                    <h3 class="director-name">Christine</h3>
-                    <div class="director-title">Founder & Creative Director</div>
-                    <div class="phone">📞 0729 338 691</div>
-                    <div class="services">
-                        Bespoke Events • Custom Cakes • Cocktails<br>
-                        Traditional Occasions • Bouquets
-                    </div>
-                    <div class="socials">
-                        <div class="social-item">
-                            <i class="fab fa-instagram"></i> @bloom_and_bake_atelier
-                        </div>
-                        <div class="social-item">
-                            <i class="fab fa-tiktok"></i> @bloom_bakeatelier
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Back Actions shortcuts -->
-                <div class="card-actions" onclick="event.stopPropagation()">
+                <div class="card-actions-row">
                     <a href="tel:+254729338691" class="card-btn" title="Call Christine"><i class="fas fa-phone"></i></a>
                     <a href="https://wa.me/254729338691" class="card-btn" title="WhatsApp Message"><i class="fab fa-whatsapp"></i></a>
                     <a href="https://instagram.com/tanzanite_luxe_events" target="_blank" class="card-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
@@ -490,15 +482,6 @@
     </div>
 
     <script>
-        // Flip Card interaction
-        function toggleFlip(event) {
-            // Prevent flip if clicking action buttons inside the card
-            if (event.target.closest('.card-actions')) return;
-            
-            const card = document.getElementById('business-card');
-            card.classList.toggle('flipped');
-        }
-
         // Change card themes on the fly
         function changeStyle(styleName) {
             const body = document.body;
@@ -512,17 +495,22 @@
             if (activeBtn) activeBtn.classList.add('active');
         }
 
+        // Dynamically set the QR code to point to the index.html page
+        window.addEventListener('DOMContentLoaded', () => {
+            const currentUrl = window.location.href.split('?')[0].replace('card.html', 'index.html');
+            const qrImage = document.getElementById('website-qr');
+            
+            // Generate QR code using the dynamic qrserver API
+            qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent(currentUrl)}`;
+        });
+
         // Handle URL parameters for screenshotting
         const urlParams = new URLSearchParams(window.location.search);
         const styleParam = urlParams.get('style');
-        const sideParam = urlParams.get('side');
         const hideUiParam = urlParams.get('hide_ui');
 
         if (styleParam) {
             changeStyle(styleParam);
-        }
-        if (sideParam === 'back') {
-            document.getElementById('business-card').classList.add('flipped');
         }
         if (hideUiParam === 'true') {
             const selector = document.querySelector('.style-selector-container');
