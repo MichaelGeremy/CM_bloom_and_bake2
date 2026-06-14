@@ -4,19 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Tanzanite Lux Events interactive digital business card. Save contact, scan to chat, and browse services.">
+    <meta name="description" content="Tanzanite Lux Events interactive digital business card with multiple modern styles.">
     <title>Christine | Digital Business Card</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* CSS Custom Properties for Dynamic Styling */
         :root {
-            --emerald-deep: #00231e;
-            --emerald: #00332c;
-            --gold: #d4af37;
-            --white: #ffffff;
-            --gold-light: #f7ef8a;
+            /* Theme 1: Emerald Lux (Default) */
+            --body-bg: radial-gradient(circle at top, #002d27, #001210);
+            --card-bg: linear-gradient(135deg, #00231e 0%, #004d40 100%);
+            --card-border: #d4af37;
+            --card-accent: #d4af37;
+            --card-accent-rgb: 212, 175, 55;
+            --card-text: #ffffff;
+            --card-text-secondary: rgba(255, 255, 255, 0.8);
+            --btn-bg: rgba(255, 255, 255, 0.05);
+            --btn-border: rgba(212, 175, 55, 0.3);
+            --btn-hover-bg: #d4af37;
+            --btn-hover-text: #00231e;
+            --shadow: rgba(0, 0, 0, 0.5);
+            --logo-bg: #ffffff;
+        }
+
+        [data-style="ivory"] {
+            /* Theme 2: Clean Ivory Minimalist */
+            --body-bg: radial-gradient(circle at top, #f5efe6, #dcd4c4);
+            --card-bg: #fdfbf7;
+            --card-border: #c5a059;
+            --card-accent: #c5a059;
+            --card-accent-rgb: 197, 160, 89;
+            --card-text: #2c2523;
+            --card-text-secondary: #5a504c;
+            --btn-bg: rgba(0, 0, 0, 0.03);
+            --btn-border: rgba(197, 160, 89, 0.4);
+            --btn-hover-bg: #c5a059;
+            --btn-hover-text: #fdfbf7;
+            --shadow: rgba(44, 37, 35, 0.15);
+            --logo-bg: #2c2523;
+        }
+
+        [data-style="obsidian"] {
+            /* Theme 3: Midnight Glow */
+            --body-bg: radial-gradient(circle at top, #1e1e1e, #0a0a0a);
+            --card-bg: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+            --card-border: rgba(212, 175, 55, 0.4);
+            --card-accent: #f7ef8a;
+            --card-accent-rgb: 247, 239, 138;
+            --card-text: #ffffff;
+            --card-text-secondary: rgba(255, 255, 255, 0.7);
+            --btn-bg: rgba(255, 255, 255, 0.03);
+            --btn-border: rgba(247, 239, 138, 0.3);
+            --btn-hover-bg: #f7ef8a;
+            --btn-hover-text: #121212;
+            --shadow: rgba(0, 0, 0, 0.8);
+            --logo-bg: #ffffff;
         }
 
         * {
@@ -26,49 +70,108 @@
         }
 
         body {
-            background: radial-gradient(circle at top, #002d27, #001210);
+            background: var(--body-bg);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 25px;
+            gap: 20px;
             font-family: 'Outfit', sans-serif;
             padding: 20px;
-            color: var(--white);
+            color: var(--card-text);
+            transition: background 0.6s ease, color 0.6s ease;
             -webkit-print-color-adjust: exact;
         }
 
+        /* Styles Switcher Panel */
+        .style-selector-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            z-index: 10;
+        }
+
+        .selector-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            color: var(--card-accent);
+            font-weight: 700;
+        }
+
+        .style-switcher {
+            display: flex;
+            background: rgba(0, 0, 0, 0.15);
+            border: 1px solid var(--btn-border);
+            padding: 5px;
+            border-radius: 40px;
+            gap: 5px;
+        }
+
+        .style-btn {
+            background: transparent;
+            border: none;
+            color: var(--card-text);
+            padding: 8px 14px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .style-btn.active {
+            background: var(--card-accent);
+            color: var(--btn-hover-text);
+        }
+
+        .color-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Navigation & Actions */
         .header-actions {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             z-index: 10;
         }
 
         .btn-action {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            color: var(--gold);
-            padding: 10px 20px;
+            background: var(--btn-bg);
+            border: 1px solid var(--btn-border);
+            color: var(--card-accent);
+            padding: 9px 18px;
             border-radius: 30px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             transition: all 0.3s ease;
         }
 
         .btn-action:hover {
-            background: var(--gold);
-            color: var(--emerald-deep);
-            border-color: var(--gold);
+            background: var(--btn-hover-bg);
+            color: var(--btn-hover-text);
+            border-color: var(--card-accent);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.25);
+            box-shadow: 0 4px 12px rgba(var(--card-accent-rgb), 0.2);
         }
 
         /* 3D Card Container styling */
@@ -100,67 +203,67 @@
             height: 100%;
             -webkit-backface-visibility: hidden;
             backface-visibility: hidden;
-            border: 2px solid var(--gold);
+            border: 2px solid var(--card-border);
             border-radius: 20px;
             padding: 30px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 15px 35px var(--shadow);
+            background: var(--card-bg);
+            transition: background 0.6s ease, border-color 0.6s ease, box-shadow 0.6s ease;
         }
 
         .card-front {
-            background: linear-gradient(135deg, var(--emerald-deep) 0%, var(--emerald) 100%);
-            color: var(--white);
             justify-content: center;
         }
 
         .card-back {
-            background: linear-gradient(135deg, var(--emerald) 0%, var(--emerald-deep) 100%);
-            color: var(--white);
             transform: rotateY(180deg);
             justify-content: space-between;
         }
 
         .logo-img {
-            width: 130px;
-            height: 130px;
-            border: 2px solid var(--gold);
+            width: 125px;
+            height: 125px;
+            border: 2px solid var(--card-border);
             border-radius: 50%;
-            background: white;
+            background: var(--logo-bg);
             object-fit: cover;
             margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 20px rgba(var(--card-accent-rgb), 0.15);
+            transition: border-color 0.6s ease, box-shadow 0.6s ease;
         }
 
         .brand-name {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            color: var(--gold);
+            color: var(--card-accent);
             text-transform: uppercase;
             letter-spacing: 2px;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             font-weight: 500;
+            transition: color 0.6s ease;
         }
 
         .tagline {
             font-size: 0.85rem;
             font-style: italic;
             font-family: 'Playfair Display', serif;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 30px;
+            color: var(--card-text-secondary);
+            margin-bottom: 25px;
         }
 
         .flip-hint {
             font-size: 0.7rem;
-            color: var(--gold);
+            color: var(--card-accent);
             text-transform: uppercase;
             letter-spacing: 2px;
             display: flex;
             align-items: center;
             gap: 8px;
             opacity: 0.8;
-            margin-top: 20px;
+            margin-top: 15px;
             animation: pulse 2s infinite;
         }
 
@@ -171,7 +274,7 @@
         }
 
         .qr-section {
-            margin: 15px 0;
+            margin: 15px 0 5px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -182,12 +285,12 @@
             background: white;
             padding: 8px;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
         }
 
         .qr-image {
-            width: 110px;
-            height: 110px;
+            width: 105px;
+            height: 105px;
             display: block;
         }
 
@@ -195,8 +298,9 @@
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
-            color: var(--gold);
+            color: var(--card-accent);
             font-weight: 700;
+            transition: color 0.6s ease;
         }
 
         .details-section {
@@ -205,57 +309,74 @@
             margin-bottom: 15px;
         }
 
+        .director-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--card-accent);
+            margin-bottom: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .director-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--card-text-secondary);
+            margin-bottom: 12px;
+        }
+
         .phone {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 700;
             margin-bottom: 8px;
-            color: #ffffff;
+            color: var(--card-text);
             letter-spacing: 0.5px;
         }
 
         .services {
-            font-size: 0.8rem;
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.5;
+            font-size: 0.75rem;
+            color: var(--card-text-secondary);
+            line-height: 1.4;
             margin-bottom: 12px;
         }
 
         .socials {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            font-size: 0.8rem;
-            color: var(--gold-light);
+            gap: 6px;
+            font-size: 0.75rem;
+            color: var(--card-accent);
         }
 
         .social-item {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             opacity: 0.9;
         }
 
         .social-item i {
-            color: var(--gold);
-            font-size: 0.95rem;
+            color: var(--card-accent);
+            font-size: 0.85rem;
         }
 
-        /* Backside shortcuts bar */
+        /* Backside actions bar */
         .card-actions {
             width: 100%;
             display: flex;
             justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 12px;
+            margin-top: 5px;
         }
 
         .card-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #ffffff;
-            width: 38px;
-            height: 38px;
+            background: var(--btn-bg);
+            border: 1px solid var(--btn-border);
+            color: var(--card-text);
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -265,9 +386,9 @@
         }
 
         .card-btn:hover {
-            background: var(--gold);
-            color: var(--emerald-deep);
-            border-color: var(--gold);
+            background: var(--card-accent);
+            color: var(--btn-hover-text);
+            border-color: var(--card-accent);
             transform: scale(1.1);
         }
 
@@ -277,13 +398,13 @@
                 padding: 0;
             }
 
+            .style-selector-container, .header-actions, .flip-hint, .card-actions {
+                display: none;
+            }
+
             .card-container {
                 box-shadow: none;
                 margin: 0 auto;
-            }
-
-            .header-actions, .flip-hint, .card-actions {
-                display: none;
             }
         }
     </style>
@@ -291,14 +412,31 @@
 
 <body>
 
+    <!-- Styles Switcher Panel -->
+    <div class="style-selector-container">
+        <span class="selector-label">Choose Business Card Style</span>
+        <div class="style-switcher">
+            <button class="style-btn active" id="btn-emerald" onclick="changeStyle('emerald')">
+                <span class="color-dot" style="background: #00332c; border: 1px solid #d4af37;"></span> Emerald
+            </button>
+            <button class="style-btn" id="btn-ivory" onclick="changeStyle('ivory')">
+                <span class="color-dot" style="background: #fdfbf7; border: 1px solid #c5a059;"></span> Ivory
+            </button>
+            <button class="style-btn" id="btn-obsidian" onclick="changeStyle('obsidian')">
+                <span class="color-dot" style="background: #121212; border: 1px solid #f7ef8a;"></span> Obsidian
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation & Direct actions -->
     <div class="header-actions">
         <a href="index.html" class="btn-action"><i class="fas fa-home"></i> Home</a>
-        <a href="vcard.vcf" class="btn-action" download><i class="fas fa-user-plus"></i> Save</a>
+        <a href="vcard.vcf" class="btn-action" download><i class="fas fa-user-plus"></i> Save Contact</a>
         <button class="btn-action" onclick="window.print()"><i class="fas fa-print"></i> Print</button>
     </div>
 
     <!-- 3D Flipping Business Card -->
-    <div class="card-container" id="business-card" onclick="toggleFlip()">
+    <div class="card-container" id="business-card" onclick="toggleFlip(event)">
         <div class="card-inner">
             
             <!-- Card Front -->
@@ -313,6 +451,7 @@
 
             <!-- Card Back -->
             <div class="card-back">
+                <!-- QR Code scan to chat -->
                 <div class="qr-section">
                     <div class="qr-wrapper">
                         <img src="whatsapp_qr.png" alt="WhatsApp QR" class="qr-image">
@@ -320,7 +459,10 @@
                     <div class="qr-label">Scan to Chat</div>
                 </div>
 
+                <!-- Director Contact details -->
                 <div class="details-section">
+                    <h3 class="director-name">Christine</h3>
+                    <div class="director-title">Founder & Creative Director</div>
                     <div class="phone">📞 0729 338 691</div>
                     <div class="services">
                         Bespoke Events • Custom Cakes • Cocktails<br>
@@ -336,7 +478,8 @@
                     </div>
                 </div>
 
-                <div class="card-actions">
+                <!-- Back Actions shortcuts -->
+                <div class="card-actions" onclick="event.stopPropagation()">
                     <a href="tel:+254729338691" class="card-btn" title="Call Christine"><i class="fas fa-phone"></i></a>
                     <a href="https://wa.me/254729338691" class="card-btn" title="WhatsApp Message"><i class="fab fa-whatsapp"></i></a>
                     <a href="https://instagram.com/tanzanite_luxe_events" target="_blank" class="card-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
@@ -347,9 +490,25 @@
     </div>
 
     <script>
-        function toggleFlip() {
+        // Flip Card interaction
+        function toggleFlip(event) {
+            // Prevent flip if clicking action buttons inside the card
+            if (event.target.closest('.card-actions')) return;
+            
             const card = document.getElementById('business-card');
             card.classList.toggle('flipped');
+        }
+
+        // Change card themes on the fly
+        function changeStyle(styleName) {
+            const body = document.body;
+            body.setAttribute('data-style', styleName);
+
+            // Update active state on selector buttons
+            document.querySelectorAll('.style-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById(`btn-${styleName}`).classList.add('active');
         }
     </script>
 </body>
